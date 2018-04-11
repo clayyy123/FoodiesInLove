@@ -54,6 +54,13 @@ module.exports = {
       res.json(matches)
     })
   },
+
+  chat: (req,res)=>{
+    Match.findById(req.params.id, (err, datChat)=>{
+      if (err) return err
+      res.json(datChat)
+    })
+  },
   
   destroy:(req,res)=>{
     Match.findByIdAndRemove(req.params.id, (err,deletedMatch)=>{

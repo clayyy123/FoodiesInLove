@@ -10,6 +10,7 @@ import Home from './views/Home'
 import Feed from "./views/Feed"
 import Profile from "./views/Profile"
 import Matches from "./views/Matches"
+import Chat from "./views/Chat"
 
 class App extends React.Component {
 	state = { currentUser: httpClient.getCurrentUser() }
@@ -32,6 +33,10 @@ class App extends React.Component {
 
 				<Switch>
 
+					<Route path="/matches/:id" render={(props)=>{
+						return <Chat {...props}/>
+					}}/>
+
 					<Route path="/login" render={(props) => {
 						return <LogIn {...props} onLoginSuccess={this.onLoginSuccess.bind(this)} />
 					}} />
@@ -53,7 +58,7 @@ class App extends React.Component {
 						return <Profile {...props} current={currentUser}/>
 					}}/>
 
-					<Route path="/Matches" render={(routeProps)=>{
+					<Route path="/matches" render={(routeProps)=>{
 						return <Matches current={currentUser}/>
 					}}/>
 

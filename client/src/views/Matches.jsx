@@ -1,5 +1,6 @@
 import React from "react"
 import httpClient from "../httpClient"
+import { Link } from 'react-router-dom'
 
 class Matches extends React.Component{
   state={
@@ -23,6 +24,8 @@ class Matches extends React.Component{
     })
   }
 
+
+
   render(){
     return(
       <div className="Matches">
@@ -30,11 +33,19 @@ class Matches extends React.Component{
       {this.state.matches.map((match)=>{
         return (
         <div className="row matchbox"> 
-          <div className="column-50">
-          {match.userSlot1.user.name} and {match.userSlot2.user.name}
+           <Link to={`/matches/${match._id}`}><div className="column-50" >
+          {match.userSlot1.user.name !== this.props.current.name
+          ? (
+            match.userSlot1.user.name
+          )
+          : (
+           match.userSlot2.user.name 
+          )
+          
+          }
           </div>
           <div className="space column-25">
-          </div>
+          </div></Link>
           <div className="column-25"><span onClick={()=>{this.handleDelete(match._id)}} className="fa fa-remove"></span>
           </div>
         </div>

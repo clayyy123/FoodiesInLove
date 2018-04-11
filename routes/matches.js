@@ -15,6 +15,10 @@ matchesRouter.route("/:id")
   .get(matchesCtrl.retrieve)
   .delete(matchesCtrl.destroy)
 
+matchesRouter.route("/chat/:id")
+  .get(matchesCtrl.chat)
+
+
 module.exports = matchesRouter
 
 

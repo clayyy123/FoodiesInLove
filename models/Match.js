@@ -9,7 +9,9 @@ const matchSchema = new mongoose.Schema({
     user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     liked: Boolean
   },
-  meetUp: {type: Array}
+  meetUp: {type: Array},
+  messages: [String]
+
 
 })
 
