@@ -6,8 +6,10 @@ import NavBar from './NavBar'
 import LogIn from './views/LogIn'
 import LogOut from './views/LogOut'
 import SignUp from './views/SignUp'
-import VIP from './views/VIP'
 import Home from './views/Home'
+import Feed from "./views/Feed"
+import Profile from "./views/Profile"
+import Matches from "./views/Matches"
 
 class App extends React.Component {
 	state = { currentUser: httpClient.getCurrentUser() }
@@ -43,11 +45,18 @@ class App extends React.Component {
 						return <SignUp {...props} onSignUpSuccess={this.onLoginSuccess.bind(this)} />
 					}} />
 
-					<Route path="/vip" render={() => {
-						return currentUser
-							? <VIP />
-							: <Redirect to="/login" />
-					}} />
+					<Route path="/feed" render={(props)=>{
+						return <Feed {...props} current={currentUser}/>
+					}}/>
+
+					<Route path="/profile" render={(props)=>{
+						return <Profile {...props} current={currentUser}/>
+					}}/>
+
+					<Route path="/Matches" render={(routeProps)=>{
+						return <Matches current={currentUser}/>
+					}}/>
+
 
 					<Route path="/" component={Home} />
 

@@ -55,6 +55,29 @@ httpClient.logOut = function() {
 	return true
 }
 
+httpClient.getUsers = function(){
+	return this({method:"get", url:"/api/users"})
+}
+
+httpClient.updateUsers = function (fields){
+	return this({method:"patch", url:`/api/users/${fields.id}`, data:fields})
+}
+
+httpClient.datUser = function(id){
+	return this({method:"get", url:`/api/users/${id}`})
+}
+
+httpClient.seeMatch = function(id){
+	return this({method:"put", url: `/api/matches/${id}`})
+}
+
+httpClient.getMatches = function(id){
+	return this({method:"get", url:`/api/matches/${id}`})
+}
+
+httpClient.deleteMatch = function(id){
+	return this({method:"delete", url:`/api/matches/${id}`})
+}
 // During initial app load attempt to set a localStorage stored token
 // as a default header for all api requests.
 httpClient.defaults.headers.common.token = httpClient.getToken()

@@ -4,7 +4,13 @@ const signToken = require('../serverAuth.js').signToken
 module.exports = {
 	// list all users
 	index: (req, res) => {
-		User.find({}, (err, users) => {
+		const query= {
+			$and:[
+			{$or: [{ "topThree": req.user.topThree[0] },{ "topThree": req.user.topThree[1] },{ "topThree": req.user.topThree[2]}]},
+			{"_id": {$nin: [req.user._id]}}
+		]
+		}
+		User.find(query, (err, users) => {
 			res.json(users)
 		})
 	},
