@@ -56,9 +56,23 @@ module.exports = {
   },
 
   chat: (req,res)=>{
-    Match.findById(req.params.id, (err, datChat)=>{
+    Match.findById(req.params.id).populate('userSlot1.user')
+    .populate('userSlot2.user')
+    .exec((err, datChat)=>{
       if (err) return err
       res.json(datChat)
+    })
+  },
+
+  update:(req,res)=>{
+    Match.findById(req.params.id, (err, datMatch)=>{
+      if (err) return err
+      console.log(req.body)
+      datMatch.messages.push(req.body.message)
+      console.log(datMatch)
+      datMatch.save((err)=>{ 
+        res.json(datMatch)
+      })
     })
   },
   

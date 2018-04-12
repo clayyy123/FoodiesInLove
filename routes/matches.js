@@ -17,6 +17,7 @@ matchesRouter.route("/:id")
 
 matchesRouter.route("/chat/:id")
   .get(matchesCtrl.chat)
+  .post(matchesCtrl.update)
 
 
 module.exports = matchesRouter

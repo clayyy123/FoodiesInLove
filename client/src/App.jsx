@@ -34,7 +34,7 @@ class App extends React.Component {
 				<Switch>
 
 					<Route path="/matches/:id" render={(props)=>{
-						return <Chat {...props}/>
+						return <Chat current={currentUser} {...props}/>
 					}}/>
 
 					<Route path="/login" render={(props) => {

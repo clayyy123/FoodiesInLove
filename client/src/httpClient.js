@@ -82,6 +82,10 @@ httpClient.deleteMatch = function(id){
 httpClient.getChat = function(id){
 	return this({method:"get", url:`/api/matches/chat/${id}`})
 }
+
+httpClient.addMessage= function(field, chatId){
+	return this({method:"post", url:`/api/matches/chat/${chatId}`, data:{message: field}})
+}
 // During initial app load attempt to set a localStorage stored token
 // as a default header for all api requests.
 httpClient.defaults.headers.common.token = httpClient.getToken()
