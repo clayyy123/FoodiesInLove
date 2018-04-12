@@ -8,7 +8,7 @@ class Matches extends React.Component{
   }
   componentDidMount(){
     httpClient.getMatches(this.props.current._id).then((serverResponse)=>{
-      console.log(serverResponse)
+      // console.log(serverResponse)
       this.setState({
         matches:serverResponse.data
       })
@@ -17,7 +17,7 @@ class Matches extends React.Component{
 
   handleDelete(id){
     httpClient.deleteMatch(id).then((serverResponse)=>{
-      console.log(serverResponse)
+      // console.log(serverResponse)
       this.setState({
         matches: this.state.matches.filter(match => match._id !== serverResponse.data.match._id)
       })

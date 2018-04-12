@@ -7,13 +7,13 @@ import Modal from "./Modal.jsx"
 class Feed extends React.Component {
   state={
     filteredUsers: [],
-    potentialUser: {},
+    potentialUser: null,
     modal: false
   }
 
   componentDidMount(){
     httpClient.getUsers().then((serverResponse)=>{
-      console.log(serverResponse.data)
+      // console.log(serverResponse.data)
       this.setState({
         filteredUsers: serverResponse.data,
         potentialUser: serverResponse.data[0]
@@ -25,12 +25,17 @@ class Feed extends React.Component {
     var index = this.state.filteredUsers.indexOf(this.state.potentialUser)
     if(this.state.filteredUsers[index+1] === undefined){
       httpClient.seeMatch(this.state.potentialUser._id).then((serverResponse)=>{
+        if(serverResponse.data.matchCreated){
+          this.setState({
+            modal: true,
+          })
+        }
         this.setState({
-          potentialUser: {name: "No More Users", age: "Refresh", bio: "stick around!"}
+          potentialUser: this.state.filteredUsers[0]
       })})
     } else if(this.state.potentialUser){
       httpClient.seeMatch(this.state.potentialUser._id).then((serverResponse)=>{
-        console.log(serverResponse.data)
+        // console.log(serverResponse.data)
         if(serverResponse.data.matchCreated){
           this.setState({
             modal: true,
@@ -59,20 +64,26 @@ class Feed extends React.Component {
 
 
   handleModal(){
-    console.log("hi")
+    // console.log("hi")
     this.setState({
       modal: !this.state.modal
     })
   }
+
+
   
 
 
  render(){
    var index = this.state.filteredUsers.indexOf(this.state.potentialUser)
-   var matchedUser = this.state.filteredUsers[index-1]  
+   var matchedUser = this.state.filteredUsers[index-1] || this.state.filteredUsers[index]
+   const { potentialUser } = this.state
+  //  console.log(this.state.potentialUser)
    return(
      <div className="Feed">
-      <ProfileCard potential={this.state.potentialUser} next={this.handleEat.bind(this)} noEat={this.handleNoEat.bind(this)}/>
+     {potentialUser && (
+       <ProfileCard potential={this.state.potentialUser} next={this.handleEat.bind(this)} noEat={this.handleNoEat.bind(this)}/>
+     )}
       {this.state.modal
       ? (
         <div id="myModal" class="modal">

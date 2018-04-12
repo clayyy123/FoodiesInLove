@@ -35,7 +35,9 @@ module.exports = {
           })
         } else if(foundMatch && foundMatch.userSlot1.user.email === req.user.email) {
           res.json({message: "match exists, and waiting for other user", match: foundMatch})
-        } else {
+        } else if (foundMatch.userSlot2.liked === true){
+          res.json({message: "match has been created already"})
+        }else {
           foundMatch.userSlot2.liked = true
           foundMatch.save((err, completedMatch) => {
             res.json({ success: true, message: "💑👩‍❤️‍👩👨‍❤️‍👨", matchCreated: completedMatch})

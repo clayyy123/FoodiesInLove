@@ -116,3 +116,11 @@
 #chat-name{
 	text-align: center;
 }
+
+.chatList{
+	list-style: none;
+}
+
+#profile-image{
+	max-height: 200px;
+}

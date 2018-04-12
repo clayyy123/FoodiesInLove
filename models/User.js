@@ -5,7 +5,7 @@ const
 		name: { type: String, required:true },
 		email: { type: String, required: true, unique: true },
 		password: { type: String, required: true },
-		imageUrl: {type: String},
+		imageUrl: [String],
 		age: {type: Number},
 		bio: {type: String},
 		topThree: {type: Array, default:[String]}

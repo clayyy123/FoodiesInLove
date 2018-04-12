@@ -10,23 +10,32 @@ class Chat extends React.Component{
   }
 
   componentDidMount(){
+    var chatBox= document.querySelector(".chatbox")
     httpClient.getChat(this.props.match.params.id).then((serverResponse)=>{
-      console.log(serverResponse)
+      // console.log(serverResponse)
       this.setState({
         userInfo: serverResponse.data,
         messages: serverResponse.data.messages
       })
+      chatBox.scrollTop = chatBox.scrollHeight
     })
   }
 
   handleSubmit(evt){
     var textValue = document.querySelector("#textArea").value
+    var defaultValue= document.querySelector("#textArea").name
+    var chatBox= document.querySelector(".chatbox")
     evt.preventDefault()
     this.setState({
-      messages: [...this.state.messages,textValue]
+      messages: [...this.state.messages, defaultValue + textValue]
     })
-    httpClient.addMessage(textValue, this.state.chatId).then((serverResponse)=>{
-      document.querySelector("#textArea").value = `${this.props.current.name}: `
+    httpClient.addMessage(defaultValue + textValue, this.state.chatId).then((serverResponse)=>{
+      document.querySelector("#textArea").value = ""
+      document.querySelector("#textArea").focus()
+      setTimeout(function(){
+        chatBox.scrollTop = chatBox.scrollHeight
+    }, 100)
+ 
     })
   }
 
@@ -38,7 +47,7 @@ class Chat extends React.Component{
           :(this.state.userInfo && this.state.userInfo.userSlot2.user.name)
           } </h3>
         <div className="chatbox">
-        <ul>
+        <ul className="chatList">
           {this.state.messages.map((message)=>{
             return <li>{message}</li>
           })}
@@ -46,7 +55,7 @@ class Chat extends React.Component{
         </div>
         <div className="text-box">
           <form>
-            <textarea id="textArea" placeholder="Thyme fries when you're having fun!Peas, coordinut and orange okra?" defaultValue={`${this.props.current.name}: `}>
+            <textarea id="textArea" placeholder="Thyme fries when you're having fun!Peas, coordinut and orange okra?" name={`${this.props.current.name}: `}>
             
             </textarea>
             <button onClick={this.handleSubmit.bind(this)}> Send </button>
