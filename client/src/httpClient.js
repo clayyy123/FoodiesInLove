@@ -60,7 +60,7 @@ httpClient.getUsers = function(){
 }
 
 httpClient.updateUsers = function (fields){
-	return this({method:"patch", url:`/api/users/${fields.id}`, data:fields})
+	return this({method:"patch", url:`/api/users/${fields._id}`, data:fields})
 }
 
 httpClient.datUser = function(id){

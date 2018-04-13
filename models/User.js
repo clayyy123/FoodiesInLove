@@ -8,7 +8,7 @@ const
 		imageUrl: [String],
 		age: {type: Number},
 		bio: {type: String},
-		topThree: {type: Array, default:[String]}
+		topThree: [String]
 	
 	})
 

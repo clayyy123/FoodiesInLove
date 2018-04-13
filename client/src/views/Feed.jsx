@@ -70,7 +70,18 @@ class Feed extends React.Component {
     })
   }
 
-
+  commonRandomizer(arr1, arr2){
+    var common=[]
+    var restaurant=""
+    for (let i=0; i < arr1.length; i++){
+      for (let j=0; j<arr2.length; j++){
+        if (arr1[i]=arr2[j]){
+          common.push(arr1[i])
+        }
+      }
+    }
+   return restaurant = common[Math.floor(Math.random()*common.length)];
+  }
   
 
 
@@ -78,7 +89,7 @@ class Feed extends React.Component {
    var index = this.state.filteredUsers.indexOf(this.state.potentialUser)
    var matchedUser = this.state.filteredUsers[index-1] || this.state.filteredUsers[index]
    const { potentialUser } = this.state
-  //  console.log(this.state.potentialUser)
+   console.log(this.state.potentialUser)
    return(
      <div className="Feed">
      {potentialUser && (
@@ -91,6 +102,8 @@ class Feed extends React.Component {
             <span onClick={this.handleModal.bind(this)} class="close">&times;</span>
             <h3>Eating Time!</h3>
             <h5> You matched with {matchedUser.name}</h5>
+            <h5> This is your selected restaurant: </h5>
+            <p>{this.commonRandomizer(matchedUser.topThree, this.props.current.topThree)}</p>
           </div>
         </div>
       )

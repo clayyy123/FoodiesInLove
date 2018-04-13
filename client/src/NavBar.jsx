@@ -32,7 +32,9 @@ render(){
 				? (
 					<span>
 						<Link to="/feed"> Start Matching </Link>
-						<Link onMouseEnter={this.handleShow.bind(this)} id="dropdown" to="/profile">{this.props.currentUser.name}</Link>
+						<span onMouseEnter={this.handleShow.bind(this)} onMouseLeave={this.handleNoShow.bind(this)}>
+						<Link id="dropdown" to="/profile">{this.props.currentUser.name}</Link>
+						</span>
 						{this.state.show
 					? (
 						<span onMouseEnter={this.handleShow.bind(this)} onMouseLeave={this.handleNoShow.bind(this)}>

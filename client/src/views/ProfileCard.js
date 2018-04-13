@@ -1,24 +1,29 @@
 import React from "react"
 
 class ProfileCard extends React.Component{
+  
   state={
-    images: this.props.potential.imageUrl
+    selection: 0
   }
 
+
   handleCycle(){
-   var image = document.querySelector("#profile-image")
-   var index = this.state.images.indexOf(image.src)
-   if (this.state.images[index+1]===undefined){
-   image.src = this.state.images[0]
+   if (this.props.potential.imageUrl[this.state.selection + 1]===undefined){
+    this.setState({
+      selection: 0
+     })
    } else {
-   image.src = this.state.images[index+1]
+    this.setState({
+      selection: this.state.selection + 1 
+     })
    }
   }
 
 render(){
+  console.log(this.props.potential)
   return(
     <div className="Card">
-      <img onClick= {this.handleCycle.bind(this)} id="profile-image" src={this.state.images[0]} alt={this.props.potential.name}/>
+      <img onClick= {this.handleCycle.bind(this)} id="profile-image" src={this.props.potential.imageUrl[this.state.selection]} alt={this.props.potential.name}/>
       <h2>{this.props.potential.name}</h2>
       <p class="title">{this.props.potential.age} years old</p>
       <p>{this.props.potential.bio}</p> <br/>

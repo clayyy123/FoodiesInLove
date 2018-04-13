@@ -8,14 +8,14 @@ fields: { id:"", name:"", password:"", email:"" ,bio:"", topThree:[],topThree1:"
 componentDidMount(){
   httpClient.datUser(this.props.current._id).then((serverResponse)=>{
     const {age, bio, email, name,topThree,_id,password, imageUrl} = serverResponse.data
-    // console.log(serverResponse)
     this.setState({
-      fields: { id:_id, name:name, password:"", email:email ,bio:bio, topThree:[],topThree1:topThree[0],topThree2:topThree[1],topThree3:topThree[2],imageUrl:[],pic1:imageUrl[0],pic2:imageUrl[1],pic3:imageUrl[2], age:age}
+      fields: { _id:_id, name:name, password:"", email:email ,bio:bio, topThree:[],topThree1:topThree[0],topThree2:topThree[1],topThree3:topThree[2],imageUrl:[],pic1:imageUrl[0],pic2:imageUrl[1],pic3:imageUrl[2], age:age}
     })
   })
 }
 
 onInputChange(evt) {
+  console.log(evt.target.value)
       this.setState({
         fields: {
           ...this.state.fields,
@@ -27,13 +27,15 @@ onInputChange(evt) {
 
 handleSubmit(evt){
   evt.preventDefault()
+
   this.setState({
     fields:{
       ...this.state.fields,
-     [this.state.fields.topThree]: this.state.fields.topThree.push(this.state.fields.topThree1,this.state.fields.topThree2,this.state.fields.topThree3),
-     [this.state.fields.imageUrl]: this.state.fields.imageUrl.push(this.state.fields.pic1,this.state.fields.pic2,this.state.fields.pic3)
+     [this.state.fields.topThree]: this.state.fields.topThree.push(this.state.fields.topThree1, this.state.fields.topThree2,this.state.fields.topThree3),
+     [this.state.fields.imageUrl]: this.state.fields.imageUrl.push(this.state.fields.pic1, this.state.fields.pic2,this.state.fields.pic3)
     }
   })
+  console.log(this.state.fields)
   httpClient.updateUsers(this.state.fields).then((serverResponse)=>{
     if(serverResponse){
       this.props.history.push('/feed')
