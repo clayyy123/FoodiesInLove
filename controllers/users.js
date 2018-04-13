@@ -1,5 +1,7 @@
 const User = require('../models/User.js')
 const signToken = require('../serverAuth.js').signToken
+const yelp = require('yelp-fusion');
+const client = yelp.client(apiKey);
 
 module.exports = {
 	// list all users

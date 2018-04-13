@@ -37,7 +37,7 @@ render(){
 						</span>
 						{this.state.show
 					? (
-						<span onMouseEnter={this.handleShow.bind(this)} onMouseLeave={this.handleNoShow.bind(this)}>
+						<span onMouseEnter={this.handleShow.bind(this)} onMouseLeave={this.handleNoShow.bind(this)} onClick={this.handleNoShow.bind(this)}>
 						<Link to="/matches">Matches<span>({this.state.matches.length})</span></Link>
 						<Link to="/profile">Profile</Link>
 						<Link to="/logout">Log Out</Link>					

@@ -97,7 +97,7 @@ class Feed extends React.Component {
      )}
       {this.state.modal
       ? (
-        <div id="myModal" class="modal">
+        <div id="myModal" className="modal">
           <div class="modal-content">
             <span onClick={this.handleModal.bind(this)} class="close">&times;</span>
             <h3>Eating Time!</h3>

@@ -76,7 +76,6 @@
 	overflow: auto; /* Enable scroll if needed */
 	background-color: rgb(0,0,0); /* Fallback color */
 	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-	border-radius: 50px 25px 50px 5px;
 }
 
 /* Modal Content/Box */
@@ -87,6 +86,7 @@
 	border: 1px solid #888;
 	width: 300px;
 	height:350px;
+	border-radius: 50px 25px 50px 50px;
 }
 
 /* The Close Button */
