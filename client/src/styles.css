@@ -35,7 +35,7 @@
 	color: black;
 }
 
-.fa:hover, .icons:hover, .delete:hover {
+.fa:hover, .icons:hover, .delete:hover, {
 	opacity: 0.7;
 }
 
@@ -140,3 +140,8 @@ background: white;
 max-height: 200px;
 overflow:scroll;
 }
+
+.list-items:hover{
+	background: rgba(207, 71, 207, 0.226);
+}
+

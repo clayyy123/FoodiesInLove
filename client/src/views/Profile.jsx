@@ -6,7 +6,9 @@ class Profile extends React.Component{
   state ={
   fields: { id:"", name:"", password:"", email:"" ,bio:"", topThree:[],topThree1:"",topThree2:"",topThree3:"",imageUrl:[],pic1:"",pic2:"",pic3:"", age:""},
   autocompleteField: [],
-  show: false
+  topThree1: false,
+  topThree2: false,
+  topThree3: false
   
   }
 componentDidMount(){
@@ -19,18 +21,19 @@ componentDidMount(){
 }
 
 onInputChange(evt) {
+  var targetShow = evt.target.name
+  var inputChange = document.querySelector("#first")
   if(evt.target.name.includes("topThree")){
     httpClient.yelpFood(evt.target.value).then((serverResponse)=>{
       if (serverResponse.data.data){
-      console.log(serverResponse.data.data.businesses)
       this.setState({
         autocompleteField:serverResponse.data.data.businesses,
-        show: true
+        [targetShow]: true
       })
     } else if(!serverResponse.data.data){
       this.setState({
         autocompleteField:[],
-        show: false
+        [targetShow]: false
       })
     }
     })
@@ -41,6 +44,18 @@ onInputChange(evt) {
       [evt.target.name]: evt.target.value
     }
   })
+}
+
+handleOff(evt){
+  var targetShow = evt.target.name
+  setTimeout(()=>this.setState({
+    [targetShow]: false
+  }),10)
+}
+
+
+handleSelect(evt){
+  console.log()
 }
 
 
@@ -60,10 +75,9 @@ handleSubmit(evt){
       this.props.history.push('/feed')
     }
   })
-  // httpClient.yelpFood(this.state.fields.topThree[0]).then((serverResponse)=>{
-  //       console.log(serverResponse)
-  //     })
 }
+
+
 
 
   render(){
@@ -87,13 +101,21 @@ handleSubmit(evt){
 							<input type="text" id="secondPic" placeholder="Second Picture" name="pic2" value={pic2} />
 							<input type="text" id="thirdPic" placeholder="Third Picture" name="pic3" value={pic3} />
 							<label for="nameField">Top Three Restaurants You Want To Eat At</label> <a href="https://www.yelp.com/" target="_blank">Search Yelp</a>
-							<input type="text" id="first" placeholder="First Restaurant" name="topThree1" value={topThree1} />
-              {this.state.show && <ul className="drop-down">{this.state.autocompleteField.map((rec)=>{
-                return <li>{rec.name}</li>
+							<input onBlur={this.handleOff.bind(this)} type="text" id="first" placeholder="First Restaurant" name="topThree1" value={topThree1} />
+              {this.state.topThree1 && <ul className="drop-down">{this.state.autocompleteField.map((rec)=>{
+                return <li className="list-items" onClick={this.handleSelect.bind(this)} >{rec.name}</li>
               })}
               </ul>}
-							<input type="text" id="second" placeholder="Second Restaurant" name="topThree2" value={topThree2} />
-							<input type="text" id="third" placeholder="Third Restaurant" name="topThree3" value={topThree3} />
+							<input onBlur={this.handleOff.bind(this)} type="text" id="second" placeholder="Second Restaurant" name="topThree2" value={topThree2} />
+              {this.state.topThree2 && <ul className="drop-down">{this.state.autocompleteField.map((rec)=>{
+                return <li className="list-items">{rec.name}</li>
+              })}
+              </ul>}
+							<input onBlur={this.handleOff.bind(this)} type="text" id="third" placeholder="Third Restaurant" name="topThree3" value={topThree3} />
+              {this.state.topThree3 && <ul className="drop-down">{this.state.autocompleteField.map((rec)=>{
+                return <li className="list-items">{rec.name}</li>
+              })}
+              </ul>}
 							<label for="nameField">Age</label>
 							<input type="text" name="age" value={age} />
 
