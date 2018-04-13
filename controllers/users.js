@@ -1,8 +1,10 @@
 const User = require('../models/User.js')
+require("dotenv").config()
+const apiKey = process.env.API_KEY
 const signToken = require('../serverAuth.js').signToken
 'use strict';
 const yelp = require('yelp-fusion');
-const client = yelp.client("VAL1yLT9Gboz5ipv2XNA2jeL7EXKIb3R7c5p2xO1LNDPIX22dc3coH8LLD7ZFv4kcwo1OBkiVDfSIpXo0nmwfHYBijFqMSKyGEShYuv1blNMWlPn1udUc2BQIZTLWnYx");
+const client = yelp.client(apiKey);
 
 module.exports = {
 	// list all users
