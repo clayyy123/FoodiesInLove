@@ -86,6 +86,10 @@ httpClient.getChat = function(id){
 httpClient.addMessage= function(field, chatId){
 	return this({method:"post", url:`/api/matches/chat/${chatId}`, data:{message: field}})
 }
+
+httpClient.yelpFood = function(field){
+	return this({method:"get", url:`/api/users/yelp/${field}`})
+}
 // During initial app load attempt to set a localStorage stored token
 // as a default header for all api requests.
 httpClient.defaults.headers.common.token = httpClient.getToken()

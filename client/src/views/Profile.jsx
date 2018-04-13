@@ -16,12 +16,17 @@ componentDidMount(){
 
 onInputChange(evt) {
   console.log(evt.target.value)
-      this.setState({
-        fields: {
-          ...this.state.fields,
-          [evt.target.name]: evt.target.value
-        }
-      })
+  if(evt.target.name.includes("topThree")){
+    httpClient.yelpFood(evt.target.value).then((serverResponse)=>{
+      console.log(serverResponse)
+    })
+  }
+  this.setState({
+    fields: {
+      ...this.state.fields,
+      [evt.target.name]: evt.target.value
+    }
+  })
 }
 
 
@@ -41,6 +46,9 @@ handleSubmit(evt){
       this.props.history.push('/feed')
     }
   })
+  // httpClient.yelpFood(this.state.fields.topThree[0]).then((serverResponse)=>{
+  //       console.log(serverResponse)
+  //     })
 }
 
 

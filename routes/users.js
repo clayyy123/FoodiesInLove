@@ -12,6 +12,9 @@ usersRouter.post('/authenticate', usersCtrl.authenticate)
 
 usersRouter.use(verifyToken)
 
+usersRouter.route("/yelp/:name")
+	.get(usersCtrl.yelpSearch)
+
 usersRouter.route('/:id')
 	.get(usersCtrl.show)
 	.patch(usersCtrl.update)

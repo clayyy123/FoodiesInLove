@@ -1,7 +1,8 @@
 const User = require('../models/User.js')
 const signToken = require('../serverAuth.js').signToken
+'use strict';
 const yelp = require('yelp-fusion');
-const client = yelp.client(apiKey);
+const client = yelp.client("VAL1yLT9Gboz5ipv2XNA2jeL7EXKIb3R7c5p2xO1LNDPIX22dc3coH8LLD7ZFv4kcwo1OBkiVDfSIpXo0nmwfHYBijFqMSKyGEShYuv1blNMWlPn1udUc2BQIZTLWnYx");
 
 module.exports = {
 	// list all users
@@ -55,6 +56,17 @@ module.exports = {
 		User.findByIdAndRemove(req.params.id, (err, user) => {
 			res.json({success: true, message: "User deleted.", user})
 		})
+	},
+
+	yelpSearch: (req,res)=>{
+				client.search({
+					term:req.params.name,
+  				location: "Los Angeles"
+				}).then(response => {
+					res.json({data:response.jsonBody})
+				}).catch(e => {
+					console.log(e);
+				});
 	},
 
 	// the login route
