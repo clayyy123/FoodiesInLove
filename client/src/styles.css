@@ -131,3 +131,12 @@
 	min-width:300px;
 	border-radius: 25px 50px;
 }
+
+.drop-down{
+position:absolute;
+z-index: 3;
+border: 1px solid black;
+background: white;
+max-height: 200px;
+overflow:scroll;
+}

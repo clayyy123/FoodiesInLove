@@ -1,5 +1,6 @@
 import React from 'react'
 import httpClient from '../httpClient'
+import {Link} from "react-router-dom"
 
 
 // sign up form behaves almost identically to log in form. We could create a flexible Form component to use for both actions, but for now we'll separate the two:
@@ -58,7 +59,7 @@ class SignUp extends React.Component {
 							<input type="text" id="firstPic" placeholder="First Picture" name="pic1" value={imageUrl[0]} />
 							<input type="text" id="secondPic" placeholder="Second Picture" name="pic2" value={imageUrl[1]} />
 							<input type="text" id="thirdPic" placeholder="Third Picture" name="pic3" value={imageUrl[2]} />
-							<label for="nameField">Three Restaurants You Want To Eat At</label>
+							<label for="nameField">Three Restaurants You Want To Eat At</label><a href="https://www.yelp.com/" target="_blank">Search Yelp</a>
 							<input type="text" id="first" placeholder="First Restaurant" name="topThree1" value={topThree[0]} />
 							<input type="text" id="second" placeholder="Second Restaurant" name="topThree2" value={topThree[1]} />
 							<input type="text" id="third" placeholder="Third Restaurant" name="topThree3" value={topThree[2]} />

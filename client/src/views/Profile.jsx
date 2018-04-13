@@ -1,10 +1,14 @@
 import React from "react"
 import httpClient from '../httpClient'
+import {Link} from "react-router-dom"
 
 class Profile extends React.Component{
-state ={
-fields: { id:"", name:"", password:"", email:"" ,bio:"", topThree:[],topThree1:"",topThree2:"",topThree3:"",imageUrl:[],pic1:"",pic2:"",pic3:"", age:""}
-}
+  state ={
+  fields: { id:"", name:"", password:"", email:"" ,bio:"", topThree:[],topThree1:"",topThree2:"",topThree3:"",imageUrl:[],pic1:"",pic2:"",pic3:"", age:""},
+  autocompleteField: [],
+  show: false
+  
+  }
 componentDidMount(){
   httpClient.datUser(this.props.current._id).then((serverResponse)=>{
     const {age, bio, email, name,topThree,_id,password, imageUrl} = serverResponse.data
@@ -15,10 +19,20 @@ componentDidMount(){
 }
 
 onInputChange(evt) {
-  console.log(evt.target.value)
   if(evt.target.name.includes("topThree")){
     httpClient.yelpFood(evt.target.value).then((serverResponse)=>{
-      console.log(serverResponse)
+      if (serverResponse.data.data){
+      console.log(serverResponse.data.data.businesses)
+      this.setState({
+        autocompleteField:serverResponse.data.data.businesses,
+        show: true
+      })
+    } else if(!serverResponse.data.data){
+      this.setState({
+        autocompleteField:[],
+        show: false
+      })
+    }
     })
   }
   this.setState({
@@ -72,8 +86,12 @@ handleSubmit(evt){
 							<input type="text" id="firstPic" placeholder="First Picture" name="pic1" value={pic1} />
 							<input type="text" id="secondPic" placeholder="Second Picture" name="pic2" value={pic2} />
 							<input type="text" id="thirdPic" placeholder="Third Picture" name="pic3" value={pic3} />
-							<label for="nameField">Top Three Restaurants</label>
+							<label for="nameField">Top Three Restaurants You Want To Eat At</label> <a href="https://www.yelp.com/" target="_blank">Search Yelp</a>
 							<input type="text" id="first" placeholder="First Restaurant" name="topThree1" value={topThree1} />
+              {this.state.show && <ul className="drop-down">{this.state.autocompleteField.map((rec)=>{
+                return <li>{rec.name}</li>
+              })}
+              </ul>}
 							<input type="text" id="second" placeholder="Second Restaurant" name="topThree2" value={topThree2} />
 							<input type="text" id="third" placeholder="Third Restaurant" name="topThree3" value={topThree3} />
 							<label for="nameField">Age</label>
