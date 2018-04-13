@@ -50,18 +50,24 @@ handleOff(evt){
   var targetShow = evt.target.name
   setTimeout(()=>this.setState({
     [targetShow]: false
-  }),10)
+  }),20)
 }
 
 
 handleSelect(evt){
-  console.log()
+  var targetShow = document.activeElement.name
+  console.log(evt.target.innerText)
+  this.setState({
+    fields:{
+      ...this.state.fields,
+      [targetShow]:  evt.target.innerText
+    }
+  })
 }
 
 
 handleSubmit(evt){
   evt.preventDefault()
-
   this.setState({
     fields:{
       ...this.state.fields,
@@ -101,19 +107,19 @@ handleSubmit(evt){
 							<input type="text" id="secondPic" placeholder="Second Picture" name="pic2" value={pic2} />
 							<input type="text" id="thirdPic" placeholder="Third Picture" name="pic3" value={pic3} />
 							<label for="nameField">Top Three Restaurants You Want To Eat At</label> <a href="https://www.yelp.com/" target="_blank">Search Yelp</a>
-							<input onBlur={this.handleOff.bind(this)} type="text" id="first" placeholder="First Restaurant" name="topThree1" value={topThree1} />
+							<input focus onBlur={this.handleOff.bind(this)} type="text" id="first" placeholder="First Restaurant" name="topThree1" value={topThree1} />
               {this.state.topThree1 && <ul className="drop-down">{this.state.autocompleteField.map((rec)=>{
-                return <li className="list-items" onClick={this.handleSelect.bind(this)} >{rec.name}</li>
+                return <li className="list-items" onMouseDown={this.handleSelect.bind(this)} >{rec.name}</li>
               })}
               </ul>}
 							<input onBlur={this.handleOff.bind(this)} type="text" id="second" placeholder="Second Restaurant" name="topThree2" value={topThree2} />
               {this.state.topThree2 && <ul className="drop-down">{this.state.autocompleteField.map((rec)=>{
-                return <li className="list-items">{rec.name}</li>
+                return <li className="list-items" onMouseDown={this.handleSelect.bind(this)}>{rec.name}</li>
               })}
               </ul>}
 							<input onBlur={this.handleOff.bind(this)} type="text" id="third" placeholder="Third Restaurant" name="topThree3" value={topThree3} />
               {this.state.topThree3 && <ul className="drop-down">{this.state.autocompleteField.map((rec)=>{
-                return <li className="list-items">{rec.name}</li>
+                return <li className="list-items" onMouseDown={this.handleSelect.bind(this)}>{rec.name}</li>
               })}
               </ul>}
 							<label for="nameField">Age</label>
