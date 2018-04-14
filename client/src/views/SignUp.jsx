@@ -6,10 +6,32 @@ import {Link} from "react-router-dom"
 // sign up form behaves almost identically to log in form. We could create a flexible Form component to use for both actions, but for now we'll separate the two:
 class SignUp extends React.Component {
 	state = {
-		fields: { name: '', email: '', password: '',bio:"", topThree:[],imageUrl:[], age:""}
+		fields: { name: '', email: '', password: '',bio:"", topThree:[],imageUrl:[], age:"", topThree1:"", topThree2:"",topThree3:""},
+		autocompleteField:[],
+		topThree1: false,
+		topThree2: false,
+		topThree3: false
+
 	}
 
 	onInputChange(evt) {
+		var targetShow = evt.target.name
+		if(evt.target.name.includes("topThree")){
+			httpClient.yelpFood(evt.target.value).then((serverResponse)=>{
+				console.log(serverResponse)
+				if (serverResponse.data.data){
+				this.setState({
+					autocompleteField:serverResponse.data.data.businesses,
+					[targetShow]: true
+				})
+			} else if(!serverResponse.data.data){
+				this.setState({
+					autocompleteField:[],
+					[targetShow]: false
+				})
+			}
+			})
+		}
 		this.setState({
 			fields: {
 				...this.state.fields,
@@ -17,6 +39,25 @@ class SignUp extends React.Component {
 			}
 		})
 	}
+	handleOff(evt){
+		var targetShow = evt.target.name
+		setTimeout(()=>this.setState({
+			[targetShow]: false
+		}),20)
+	}
+	
+	
+	handleSelect(evt){
+		var targetShow = document.activeElement.name
+		console.log(evt.target.innerText)
+		this.setState({
+			fields:{
+				...this.state.fields,
+				[targetShow]:  evt.target.innerText
+			}
+		})
+	}
+	
 
 	onFormSubmit(evt) {
 		var first = document.querySelector("#first").value
@@ -40,7 +81,7 @@ class SignUp extends React.Component {
 	}
 	
 	render() {
-		const { name, email, password, bio, topThree, age, imageUrl } = this.state.fields
+		const { name, email, password, bio, topThree, age, imageUrl, topThree1, topThree2, topThree3 } = this.state.fields
 		return (
 			<div className='SignUp'>
 				<div className='row'>
@@ -60,9 +101,21 @@ class SignUp extends React.Component {
 							<input type="text" id="secondPic" placeholder="Second Picture" name="pic2" value={imageUrl[1]} />
 							<input type="text" id="thirdPic" placeholder="Third Picture" name="pic3" value={imageUrl[2]} />
 							<label for="nameField">Three Restaurants You Want To Eat At</label><a href="https://www.yelp.com/" target="_blank">Search Yelp</a>
-							<input type="text" id="first" placeholder="First Restaurant" name="topThree1" value={topThree[0]} />
-							<input type="text" id="second" placeholder="Second Restaurant" name="topThree2" value={topThree[1]} />
-							<input type="text" id="third" placeholder="Third Restaurant" name="topThree3" value={topThree[2]} />
+							<input onBlur={this.handleOff.bind(this)} type="text" id="first" placeholder="First Restaurant" name="topThree1" value={topThree1} />
+              {this.state.topThree1 && <ul className="drop-down">{this.state.autocompleteField.map((rec)=>{
+                return <li className="list-items" onMouseDown={this.handleSelect.bind(this)} >{rec.name}</li>
+              })}
+              </ul>}
+							<input onBlur={this.handleOff.bind(this)} type="text" id="second" placeholder="Second Restaurant" name="topThree2" value={topThree2} />
+              {this.state.topThree2 && <ul className="drop-down">{this.state.autocompleteField.map((rec)=>{
+                return <li className="list-items" onMouseDown={this.handleSelect.bind(this)}>{rec.name}</li>
+              })}
+              </ul>}
+							<input onBlur={this.handleOff.bind(this)} type="text" id="third" placeholder="Third Restaurant" name="topThree3" value={topThree3} />
+              {this.state.topThree3 && <ul className="drop-down">{this.state.autocompleteField.map((rec)=>{
+                return <li className="list-items" onMouseDown={this.handleSelect.bind(this)}>{rec.name}</li>
+              })}
+              </ul>}
 							<label for="nameField">Age</label>
 							<input type="text" name="age" value={age} />
 

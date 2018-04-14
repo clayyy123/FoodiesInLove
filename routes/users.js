@@ -8,12 +8,12 @@ usersRouter.route('/')
 	.get(verifyToken, usersCtrl.index)
 	.post(usersCtrl.create)
 
+usersRouter.route("/yelp/:name")
+	.get(usersCtrl.yelpSearch)
+
 usersRouter.post('/authenticate', usersCtrl.authenticate)
 
 usersRouter.use(verifyToken)
-
-usersRouter.route("/yelp/:name")
-	.get(usersCtrl.yelpSearch)
 
 usersRouter.route('/:id')
 	.get(usersCtrl.show)

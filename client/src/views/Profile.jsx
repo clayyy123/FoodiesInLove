@@ -107,7 +107,7 @@ handleSubmit(evt){
 							<input type="text" id="secondPic" placeholder="Second Picture" name="pic2" value={pic2} />
 							<input type="text" id="thirdPic" placeholder="Third Picture" name="pic3" value={pic3} />
 							<label for="nameField">Top Three Restaurants You Want To Eat At</label> <a href="https://www.yelp.com/" target="_blank">Search Yelp</a>
-							<input focus onBlur={this.handleOff.bind(this)} type="text" id="first" placeholder="First Restaurant" name="topThree1" value={topThree1} />
+							<input onBlur={this.handleOff.bind(this)} type="text" id="first" placeholder="First Restaurant" name="topThree1" value={topThree1} />
               {this.state.topThree1 && <ul className="drop-down">{this.state.autocompleteField.map((rec)=>{
                 return <li className="list-items" onMouseDown={this.handleSelect.bind(this)} >{rec.name}</li>
               })}
