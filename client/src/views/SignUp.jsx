@@ -94,7 +94,7 @@ class SignUp extends React.Component {
 							<input type="text" name="email" value={email} />
 							<label for="nameField">Password</label>
 							<input type="password" name="password" value={password} />
-							<label for="nameField">Bio</label>
+							<label for="nameField">Deescribe Yourself In 5 Words or Less</label>
 							<textarea name="bio" placeholder="Tell us something about yourself" value={bio} ></textarea>
 							<label for="nameField">Load Up To Three Pictures</label>
 							<input type="text" id="firstPic" placeholder="First Picture" name="pic1" value={imageUrl[0]} />
