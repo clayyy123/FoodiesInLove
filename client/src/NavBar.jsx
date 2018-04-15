@@ -57,7 +57,6 @@ render(){
 				: (
 					<span className="horizontal">
 						<Link to="/login">Log In</Link>
-						<Link to="/signup">Sign Up</Link>
 					</span>
 				)
 			}

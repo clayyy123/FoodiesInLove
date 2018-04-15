@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from "react-router-dom"
 
 const Home = (props) => {
 	return (
@@ -8,7 +9,7 @@ const Home = (props) => {
 			<h3 className="header">
 				Foodies in Love brings foodies together to experience <br/>restaurants they have always wanted to try!
 			</h3>
-			<button id="sign-up-button"> Sign Up </button>
+			<Link to="/signup"> <button id="sign-up-button"> Sign Up </button></Link>
 			</div>
 			<div className="row">
 				<div className="column">
