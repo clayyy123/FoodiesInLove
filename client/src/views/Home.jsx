@@ -22,16 +22,25 @@ const Home = (props) => {
 			<div className="row">
 				<div className="column">
 				<h5 >See potential candidates that have the same interests!</h5>
-				<img src="https://i.imgur.com/Ig9C0ZB.png"/>
+				<img id="step2-pic" src="https://i.imgur.com/Ig9C0ZB.png"/>
 				</div>
 				<div className="column column-50 column-offset-25">
-				<h3 className="centered-title">Step Two </h3>
-			</div>
-				<div className="row">
+				<h3 id="step-two" >Step Two </h3>
 				</div>
 			</div>
+				<div className="row">
+					<div className="column">
+					<h3 id="alignment" className="centered-title">Step 3 </h3>
+					</div>
+					<div className="column column-50 column-offset-25">
+					<h5 className="centered-title">Chat and meet up!</h5>
+					<img id="top3-pic" src="https://i.imgur.com/k2WJFEE.png"/>
+					</div>
+				</div>
+		
+		</div>
 
-</div>
+
 	)
 }
 

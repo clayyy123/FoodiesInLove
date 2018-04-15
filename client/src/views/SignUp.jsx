@@ -75,7 +75,7 @@ class SignUp extends React.Component {
 			this.setState({ fields: { name: '', email: '', password: '',bio:"", topThree:[], age:"", imageUrl:[] } })
 			if(user) {
 				this.props.onSignUpSuccess(user)
-				this.props.history.push('/')
+				this.props.history.push('/feed')
 			}
 		})
 	}
