@@ -108,8 +108,10 @@
 	width: 400px;
 	height: 400px;
 	margin: 0 auto;
-	border: 1px solid purple;
 	overflow: scroll;
+	-webkit-box-shadow: -1px -1px 5px 0px rgba(0,0,0,0.24);
+	-moz-box-shadow: -1px -1px 5px 0px rgba(0,0,0,0.24);
+	box-shadow: -1px -1px 5px 0px rgba(0,0,0,0.24);
 }
 .text-box {
 	width: 400px;
@@ -126,7 +128,7 @@
 }
 
 #profile-image{
-	max-height: 230px;
+	max-height: 240px;
 	min-height: 230px;
 	min-width:300px;
 	border-radius: 25px 50px;
@@ -139,9 +141,41 @@ border: 1px solid black;
 background: white;
 max-height: 200px;
 overflow:scroll;
+cursor:pointer;
 }
 
 .list-items:hover{
 	background: rgba(207, 71, 207, 0.226);
 }
 
+#banner{
+	background-image: url("https://singlestroke.io/wp-content/uploads/2015/10/high-quality-food-stock-photos-thumbnail.jpg");
+	height: 500px;
+	position: static;
+	border-radius: 25px;
+}
+
+
+.header{
+	color:white;
+	text-align:center;
+	background: rgba(153, 79, 202, 0.438);
+}
+#sign-up-button{
+	border-radius:25px;
+	margin-left:43%;
+	margin-top: 100px;
+}
+
+#top3-pic{
+	height: 400px;
+}
+
+#alignment{
+	margin-top: 100px;
+	margin-left: 100px;
+}
+.centered-title{
+padding-top:20px;
+padding-left:50px;
+}

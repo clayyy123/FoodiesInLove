@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import httpClient from "./httpClient"
+import logo from "./logo.png"
 
 class NavBar extends React.Component {
 
@@ -13,7 +14,7 @@ handleShow(){
 	httpClient.getMatches(this.props.currentUser._id).then((serverResponse)=>{
 	this.setState({
 		matches: serverResponse.data,
-		show: true
+		show: !this.state.show
 	})
 })
 }
@@ -27,20 +28,23 @@ handleNoShow(){
 render(){
 	return (
 		<div className='NavBar'>
-			<Link to="/">Home</Link>
+			<div className="horizontal">
+			<Link id="logo" to="/">FoodiesInLove</Link>
 			{this.props.currentUser
 				? (
-					<span>
-						<Link to="/feed"> Start Matching </Link>
-						<span onMouseEnter={this.handleShow.bind(this)} onMouseLeave={this.handleNoShow.bind(this)}>
-						<Link id="dropdown" to="/profile">{this.props.currentUser.name}</Link>
+					<span >
+						<Link id="start-matching" to="/feed"> Start Matching </Link>
+						<span onClick={this.handleShow.bind(this)}>
+						<Link className="right-flex" id="dropdown" to="#">{this.props.currentUser.name}</Link>
 						</span>
 						{this.state.show
 					? (
-						<span onMouseEnter={this.handleShow.bind(this)} onMouseLeave={this.handleNoShow.bind(this)} onClick={this.handleNoShow.bind(this)}>
-						<Link to="/matches">Matches<span>({this.state.matches.length})</span></Link>
-						<Link to="/profile">Profile</Link>
-						<Link to="/logout">Log Out</Link>					
+						<span className="horizontal">
+						
+						<Link className="right-flex" to="/matches">Matches<span>({this.state.matches.length})</span></Link>
+						<Link className="right-flex" to="/profile">Profile</Link>
+						<Link className="right-flex" to="/logout">Log Out</Link>			
+							
 						</span>
 						)
 					: (
@@ -51,12 +55,13 @@ render(){
 					</span>
 				)
 				: (
-					<span>
+					<span className="horizontal">
 						<Link to="/login">Log In</Link>
 						<Link to="/signup">Sign Up</Link>
 					</span>
 				)
 			}
+			</div>
 		</div>
 	)
 }

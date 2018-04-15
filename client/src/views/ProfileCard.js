@@ -8,7 +8,7 @@ class ProfileCard extends React.Component{
 
 
   handleCycle(){
-   if (this.props.potential.imageUrl[this.state.selection + 1]===undefined){
+   if (this.props.potential.imageUrl[this.state.selection + 1]==="" || this.props.potential.imageUrl[this.state.selection + 1]===undefined){
     this.setState({
       selection: 0
      })

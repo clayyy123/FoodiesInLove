@@ -53,7 +53,7 @@ class Feed extends React.Component {
     var index = this.state.filteredUsers.indexOf(this.state.potentialUser)
     if(this.state.filteredUsers[index+1]===undefined){
       this.setState({
-        potentialUser: {name: "No More Users", age: "Refresh", bio: "stick around!"}
+        potentialUser: this.state.filteredUsers[0]
       })
     }else if(this.state.filteredUsers[index]){
       this.setState({
@@ -87,7 +87,8 @@ class Feed extends React.Component {
 
  render(){
    var index = this.state.filteredUsers.indexOf(this.state.potentialUser)
-   var matchedUser = this.state.filteredUsers[index-1] || this.state.filteredUsers[index]
+   var length = this.state.filteredUsers.length
+   var matchedUser = this.state.filteredUsers[index-1] || this.state.filteredUsers[length -1]
    const { potentialUser } = this.state
    console.log(this.state.potentialUser)
    return(
