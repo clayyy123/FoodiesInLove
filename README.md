@@ -6,6 +6,7 @@ Foodies In Love is a dating app where foodies can find other foodies who have th
 ### Approach
   The approach for this project was a lot easier than I thought because I was able to piggyback off of other dating apps.  Wireframing and trello board was a definite must for organization.  
   After the wireframing, I laid everything out by making all the views and routes and followed it up with the back end side of the app. I focused on getting the MVP of the app down, before moving on to the features and design.
+![alt text](/images/page1.jpg)![alt text](/images/page2.jpg)
 	
 
 ### User Stories
