@@ -186,3 +186,7 @@ padding-left:50px;
 #step2-pic{
 	min-width:250px;
 }
+
+ul{
+	list-style: none;
+}
