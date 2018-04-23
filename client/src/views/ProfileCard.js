@@ -27,8 +27,8 @@ render(){
       <h2>{this.props.potential.name}</h2>
       <p class="title">{this.props.potential.age} years old</p>
       <p>{this.props.potential.bio}</p> <br/>
-      <img onClick={this.props.noEat} id="no" class="icons" src="https://image.flaticon.com/icons/svg/685/685352.svg"/>
-      <img onClick={this.props.next} id="yes" class="icons" src="https://image.flaticon.com/icons/svg/45/45332.svg"/>
+      <img onClick={this.props.noEat} id="no" class="icons" src="https://image.flaticon.com/icons/svg/685/685352.svg" alt="nopic"/>
+      <img onClick={this.props.next} id="yes" class="icons" src="https://image.flaticon.com/icons/svg/45/45332.svg" alt="yespic"/>
     </div>
   )
 }

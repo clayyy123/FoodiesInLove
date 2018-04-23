@@ -1,6 +1,5 @@
 import React from 'react'
 import httpClient from '../httpClient'
-import {Link} from "react-router-dom"
 
 
 // sign up form behaves almost identically to log in form. We could create a flexible Form component to use for both actions, but for now we'll separate the two:
@@ -81,7 +80,7 @@ class SignUp extends React.Component {
 	}
 	
 	render() {
-		const { name, email, password, bio, topThree, age, imageUrl, topThree1, topThree2, topThree3 } = this.state.fields
+		const { name, email, password, bio, age, imageUrl, topThree1, topThree2, topThree3 } = this.state.fields
 		return (
 			<div className='SignUp'>
 				<div className='row'>
@@ -100,7 +99,7 @@ class SignUp extends React.Component {
 							<input type="text" id="firstPic" placeholder="First Picture" name="pic1" value={imageUrl[0]} />
 							<input type="text" id="secondPic" placeholder="Second Picture" name="pic2" value={imageUrl[1]} />
 							<input type="text" id="thirdPic" placeholder="Third Picture" name="pic3" value={imageUrl[2]} />
-							<label for="nameField">Three Restaurants You Want To Eat At</label><a href="https://www.yelp.com/" target="_blank">Search Yelp</a>
+							<label for="nameField">Three Restaurants You Want To Eat At</label><a href="https://www.yelp.com/" target="_blank" rel="noopener noreferrer">Search Yelp</a>
 							<input onBlur={this.handleOff.bind(this)} type="text" id="first" placeholder="First Restaurant" name="topThree1" value={topThree1} />
               {this.state.topThree1 && <ul className="drop-down">{this.state.autocompleteField.map((rec)=>{
                 return <li className="list-items" onMouseDown={this.handleSelect.bind(this)} >{rec.name}</li>

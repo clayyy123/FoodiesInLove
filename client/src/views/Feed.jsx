@@ -1,7 +1,6 @@
 import React from "react"
 import httpClient from "../httpClient.js"
 import ProfileCard from "./ProfileCard.js"
-import Modal from "./Modal.jsx"
 
 
 class Feed extends React.Component {
@@ -72,7 +71,7 @@ class Feed extends React.Component {
 
   commonRandomizer(arr1, arr2){
     var common=[]
-    var restaurant=""
+    var restaurant;
     for (let i=0; i < arr1.length; i++){
       for (let j=0; j<arr2.length; j++){
         if (arr1[i]=== arr2[j]){

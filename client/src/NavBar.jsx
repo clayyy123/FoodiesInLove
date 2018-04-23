@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import httpClient from "./httpClient"
-import logo from "./logo.png"
 
 class NavBar extends React.Component {
 

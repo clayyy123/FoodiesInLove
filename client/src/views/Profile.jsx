@@ -1,6 +1,6 @@
 import React from "react"
 import httpClient from '../httpClient'
-import {Link} from "react-router-dom"
+
 
 class Profile extends React.Component{
   state ={
@@ -13,7 +13,7 @@ class Profile extends React.Component{
   }
 componentDidMount(){
   httpClient.datUser(this.props.current._id).then((serverResponse)=>{
-    const {age, bio, email, name,topThree,_id,password, imageUrl} = serverResponse.data
+    const {age, bio, email, name,topThree,_id, imageUrl} = serverResponse.data
     this.setState({
       fields: { _id:_id, name:name, password:"", email:email ,bio:bio, topThree:[],topThree1:topThree[0],topThree2:topThree[1],topThree3:topThree[2],imageUrl:[],pic1:imageUrl[0],pic2:imageUrl[1],pic3:imageUrl[2], age:age}
     })
@@ -22,7 +22,6 @@ componentDidMount(){
 
 onInputChange(evt) {
   var targetShow = evt.target.name
-  var inputChange = document.querySelector("#first")
   if(evt.target.name.includes("topThree")){
     httpClient.yelpFood(evt.target.value).then((serverResponse)=>{
       if (serverResponse.data.data){
@@ -106,7 +105,7 @@ handleSubmit(evt){
 							<input type="text" id="firstPic" placeholder="First Picture" name="pic1" value={pic1} />
 							<input type="text" id="secondPic" placeholder="Second Picture" name="pic2" value={pic2} />
 							<input type="text" id="thirdPic" placeholder="Third Picture" name="pic3" value={pic3} />
-							<label for="nameField">Top Three Restaurants You Want To Eat At</label> <a href="https://www.yelp.com/" target="_blank">Search Yelp</a>
+							<label for="nameField">Top Three Restaurants You Want To Eat At</label> <a href="https://www.yelp.com/" target="_blank" rel="noopener noreferrer">Search Yelp</a>
 							<input onBlur={this.handleOff.bind(this)} type="text" id="first" placeholder="First Restaurant" name="topThree1" value={topThree1} />
               {this.state.topThree1 && <ul className="drop-down">{this.state.autocompleteField.map((rec)=>{
                 return <li className="list-items" onMouseDown={this.handleSelect.bind(this)} >{rec.name}</li>
