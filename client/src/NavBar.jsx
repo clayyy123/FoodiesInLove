@@ -42,7 +42,7 @@ render(){
 						
 						<Link className="right-flex" to="/matches">Matches<span>({this.state.matches.length})</span></Link>
 						<Link className="right-flex" to="/profile">Profile</Link>
-						<Link className="right-flex" to="/logout">Log Out</Link>			
+						<Link className="right-flex" to="/logout" onClick={this.handleNoShow.bind(this)}>Log Out</Link>			
 							
 						</span>
 						)
