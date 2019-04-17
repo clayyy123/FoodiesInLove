@@ -164,6 +164,7 @@ hr {
 /*##################################
 #########Sign up####################*/
 .sign-up {
+  padding-top: 500px;
   display: flex;
   flex-direction: column;
   justify-content: center;
