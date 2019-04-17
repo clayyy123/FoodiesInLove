@@ -36,28 +36,32 @@ class NavBar extends React.Component {
                 <Link className="start-matching" to="/feed">
                   Eat!
                 </Link>
-                <span onClick={this.handleShow.bind(this)}>
+                <div
+                  className="hidden-links"
+                  onClick={this.handleShow.bind(this)}
+                >
                   {this.props.currentUser.name}
-                </span>
-                {this.state.show ? (
-                  <span>
-                    <Link className="right-flex" to="/matches">
-                      Matches<span>({this.state.matches.length})</span>
-                    </Link>
-                    <Link className="right-flex" to="/profile">
-                      Profile
-                    </Link>
-                    <Link
-                      className="right-flex"
-                      to="/logout"
-                      onClick={this.handleNoShow.bind(this)}
-                    >
-                      Log Out
-                    </Link>
-                  </span>
-                ) : (
-                  <span />
-                )}
+
+                  {this.state.show ? (
+                    <div>
+                      <Link className="right-flex" to="/matches">
+                        Matches<span>({this.state.matches.length})</span>
+                      </Link>
+                      <Link className="right-flex" to="/profile">
+                        Profile
+                      </Link>
+                      <Link
+                        className="right-flex"
+                        to="/logout"
+                        onClick={this.handleNoShow.bind(this)}
+                      >
+                        Log Out
+                      </Link>
+                    </div>
+                  ) : (
+                    <span />
+                  )}
+                </div>
               </span>
             ) : (
               <span className="horizontal">
