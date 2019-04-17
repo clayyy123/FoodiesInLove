@@ -135,3 +135,38 @@ button:hover {
   justify-content: center;
   align-items: center;
 }
+
+hr {
+  border-style: inset;
+  width: 80%;
+  margin: auto;
+}
+
+/*##################################
+#########LOG IN####################*/
+
+.log-in {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.log-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+}
+
+/*##################################
+#########Sign up####################*/
+.sign-up {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}

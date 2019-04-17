@@ -14,12 +14,12 @@ const Home = props => {
           <Link to="/signup">
             <button id="sign-up-button"> Sign Up </button>
           </Link>
-          <button class="test">
-            <a href="#alignment">test</a>
-          </button>
+          <a href="#slide">
+            <button class="test">test</button>
+          </a>
         </div>
       </div>
-      <div className="row">
+      <div className="row" id="slide">
         <div className="col">
           <h3 id="alignment" className="centered-title">
             Step One
@@ -32,6 +32,7 @@ const Home = props => {
           </div>
         </div>
       </div>
+      <hr />
       <div className="row">
         <div className="col">
           <h5>See potential candidates that have the same interests!</h5>
@@ -43,6 +44,7 @@ const Home = props => {
           <h3 id="step-two">Step Two </h3>
         </div>
       </div>
+      <hr />
       <div className="row">
         <div className="col">
           <h3 id="alignment" className="centered-title">
