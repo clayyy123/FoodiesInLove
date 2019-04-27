@@ -116,6 +116,7 @@ class SignUp extends React.Component {
       <div className="sign-up">
         <h1>Sign Up</h1>
         <form
+          className="signup-form"
           onChange={this.onInputChange.bind(this)}
           onSubmit={this.onFormSubmit.bind(this)}
         >
@@ -230,7 +231,7 @@ class SignUp extends React.Component {
           <label for="nameField">Age</label>
           <input type="text" name="age" value={age} />
 
-          <button>Sign Up</button>
+          <button class="signup-btn">Sign Up</button>
         </form>
       </div>
     );

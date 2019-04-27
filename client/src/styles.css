@@ -171,3 +171,13 @@ hr {
   align-items: center;
   height: 100vh;
 }
+
+.signup-btn {
+  align-self: flex-end;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
