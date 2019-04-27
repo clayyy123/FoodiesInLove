@@ -14,9 +14,6 @@ const Home = props => {
           <Link to="/signup">
             <button id="sign-up-button"> Sign Up </button>
           </Link>
-          <a href="#slide">
-            <button class="test">test</button>
-          </a>
         </div>
       </div>
       <div className="row" id="slide">
