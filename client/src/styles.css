@@ -19,13 +19,20 @@ button:hover {
   border: none;
 }
 
+.container {
+  margin-top: 10rem;
+  padding: 0;
+  margin: 0;
+}
+
 /* NAV BAR */
 .nav {
   display: flex;
-  position: fixed;
   background-color: white;
   width: 100%;
   flex-direction: row;
+  top: 0;
+  z-index: 10;
 }
 
 .horizontal {
@@ -180,4 +187,52 @@ hr {
   display: flex;
   flex-direction: column;
   width: 30%;
+}
+
+/*##################################
+######### profile card#############*/
+
+.Card {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  min-width: 30rem;
+  justify-content: center;
+  align-items: center;
+  border: 0.1rem solid rgba(0, 0, 0, 0.068);
+  margin: auto;
+}
+
+.image-wrapper {
+  width: 100%;
+  top: 0;
+}
+
+.image-wrapper > img {
+  object-fit: cover;
+}
+
+.symbols {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.symbols > div {
+  width: 25%;
+}
+.symbols > img {
+  width: 100%;
+}
+
+.Feed {
+  width: 100%;
+  text-align: center;
+  height: 95vh;
+}
+
+.Profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

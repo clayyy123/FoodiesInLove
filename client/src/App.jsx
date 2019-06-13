@@ -29,70 +29,71 @@ class App extends React.Component {
     return (
       <div className="wrapper">
         <NavBar currentUser={currentUser} />
+        <div className="container">
+          <Switch>
+            <Route
+              path="/matches/:id"
+              render={props => {
+                return <Chat current={currentUser} {...props} />;
+              }}
+            />
 
-        <Switch>
-          <Route
-            path="/matches/:id"
-            render={props => {
-              return <Chat current={currentUser} {...props} />;
-            }}
-          />
+            <Route
+              path="/login"
+              render={props => {
+                return (
+                  <LogIn
+                    {...props}
+                    onLoginSuccess={this.onLoginSuccess.bind(this)}
+                  />
+                );
+              }}
+            />
 
-          <Route
-            path="/login"
-            render={props => {
-              return (
-                <LogIn
-                  {...props}
-                  onLoginSuccess={this.onLoginSuccess.bind(this)}
-                />
-              );
-            }}
-          />
+            <Route
+              path="/logout"
+              render={props => {
+                return <LogOut onLogOut={this.logOut.bind(this)} />;
+              }}
+            />
 
-          <Route
-            path="/logout"
-            render={props => {
-              return <LogOut onLogOut={this.logOut.bind(this)} />;
-            }}
-          />
+            {/* the sign up component takes an 'onSignUpSuccess' prop which will perform the same thing as onLoginSuccess: set the state to contain the currentUser */}
+            <Route
+              path="/signup"
+              render={props => {
+                return (
+                  <SignUp
+                    {...props}
+                    onSignUpSuccess={this.onLoginSuccess.bind(this)}
+                  />
+                );
+              }}
+            />
 
-          {/* the sign up component takes an 'onSignUpSuccess' prop which will perform the same thing as onLoginSuccess: set the state to contain the currentUser */}
-          <Route
-            path="/signup"
-            render={props => {
-              return (
-                <SignUp
-                  {...props}
-                  onSignUpSuccess={this.onLoginSuccess.bind(this)}
-                />
-              );
-            }}
-          />
+            <Route
+              path="/feed"
+              render={props => {
+                return <Feed {...props} current={currentUser} />;
+              }}
+            />
 
-          <Route
-            path="/feed"
-            render={props => {
-              return <Feed {...props} current={currentUser} />;
-            }}
-          />
+            <Route
+              path="/profile"
+              render={props => {
+                return <Profile {...props} current={currentUser} />;
+              }}
+            />
 
-          <Route
-            path="/profile"
-            render={props => {
-              return <Profile {...props} current={currentUser} />;
-            }}
-          />
+            <Route
+              path="/matches"
+              render={routeProps => {
+                return <Matches current={currentUser} />;
+              }}
+            />
 
-          <Route
-            path="/matches"
-            render={routeProps => {
-              return <Matches current={currentUser} />;
-            }}
-          />
-
-          <Route path="/" component={Home} />
-        </Switch>
+            <Route path="/" component={Home} />
+          </Switch>
+        </div>
       </div>
     );
   }
